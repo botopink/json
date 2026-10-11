@@ -1,5 +1,7 @@
 # json
 
+`decisions-taken.md` is generated — from the meta repository's `specs/<milestone>/decisions-taken.md` by `scripts/decisions-split.py`; edit it there, never here.
+
 > Repository: `botopink/json` (`git@github.com:botopink/json.git`) · in the meta checkout: `repository/json/`
 
 The JSON value type and its codec (decision 396): the `Json` type and its methods, `parse`, `decode`, `stringify`, `quote` — moved whole from std's `json.bp` by 142 step 1; std knows nothing of JSON.
