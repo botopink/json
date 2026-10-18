@@ -1,0 +1,9 @@
+import {Json} from "json";
+
+pub fn title(doc: Json) -> string {
+    return doc.field("title")?.str() ?? "untitled";
+}
+
+pub fn pageCount(doc: Json) -> i32 {
+    return (doc.field("pages")?.items() ?? []).length;
+}

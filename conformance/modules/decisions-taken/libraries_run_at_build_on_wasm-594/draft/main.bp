@@ -1,3 +1,22 @@
 //// Decision 594 — Every library runs at build on the wasm comptime runtime (434), jhonstart first; a function only Erlang or Node can run is a located error there.
 
-pub fn main() -> void {}
+import {io.terminal} from "std";
+import {quote, object} from "json";
+
+#[compiler.external(
+    .Erlang("""<<"key:", ($0)/binary>>"""),
+    .JavaScript("""("key:" + String($0))"""),
+    .Wasm(body: labelBody),
+)]
+declare fn label(key: string) -> string;
+
+fn labelBody(key: string) -> string {
+    return ["key:", key].join("");
+}
+
+pub fn main() -> void {
+    val manifest = comptime object([#("name", quote("botopink")), #("tab", quote("a\tb"))]);
+    val tag = comptime label(quote("name"));
+
+    terminal.print(manifest, tag);
+}

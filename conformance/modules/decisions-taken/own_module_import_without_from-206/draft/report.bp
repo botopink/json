@@ -1,0 +1,6 @@
+import {Json} from "json";
+
+pub fn summary(doc: Json) -> string {
+    val names = doc.members().map({ m -> m._0 }).join(", ");
+    return [doc.kindName(), " with ", names].join("");
+}

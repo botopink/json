@@ -1,3 +1,30 @@
 //// Decision 500 — `json` leaves std first (142 s1); `Json`'s numbers land in the json repository, `Decimal` stays in std.
 
-pub fn main() -> void {}
+import {io.terminal} from "std";
+import {decimal.Decimal} from "std";
+import {Json, decode, encode} from "json";
+
+fn describe(value: Json) -> string {
+    return case value {
+        Int(value: n) -> ["i64 ", n.toString()].join("");
+        BigInt(value: n) -> ["bigint ", n.toString()].join("");
+        Dec(value: d) -> ["decimal ", d.toString()].join("");
+        _ -> value.kindName();
+    };
+}
+
+fn exact(value: ?Json) -> ?Decimal {
+    return value?.decimal();
+}
+
+pub fn main() -> void {
+    val doc = try decode("[42, 12345678901234567890, 1.50]") catch Json.Null;
+    val items = doc.items();
+
+    terminal.print(items.map({ item -> describe(item) }).join("; "));
+    terminal.print(items.at(0)?.i64() ?? -1, items.at(2)?.i64() ?? -1);
+    terminal.print(exact(items.at(2))?.toString() ?? "none", items
+        .at(1)
+        ?.isIntegral() ?? false);
+    terminal.print(encode(doc));
+}

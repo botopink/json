@@ -1,0 +1,5 @@
+mod fields;
+
+pub val title = fields.title;
+
+pub val pageCount = fields.pageCount;

@@ -1,3 +1,11 @@
 //// Decision 337 — The shorthand import goes; `mod m;` binds the namespace `m` in the module that declares it.
 
-pub fn main() -> void {}
+import {io.terminal} from "std";
+import {Json, decode} from "json";
+
+mod readers;
+
+pub fn main() -> void {
+    val doc = try decode("{\"title\": \"botopink\", \"pages\": [1, 2, 3]}") catch Json.Null;
+    terminal.print(readers.title(doc), readers.pageCount(doc));
+}

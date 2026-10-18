@@ -1,3 +1,11 @@
 //// Decision 206 — `import {…} from "<name>"` resolves only to a package — std, a bundled package or a declared dependency.
 
-pub fn main() -> void {}
+import {io.terminal} from "std";
+import {Json, decode} from "json";
+mod report;
+import {report.summary};
+
+pub fn main() -> void {
+    val doc = try decode("{\"name\": \"botopink\", \"tags\": [\"lang\"]}") catch Json.Null;
+    terminal.print(summary(doc));
+}
