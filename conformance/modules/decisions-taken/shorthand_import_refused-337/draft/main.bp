@@ -2,10 +2,9 @@
 
 import {io.terminal} from "std";
 import {Json, decode} from "json";
-
-mod readers;
+import {readers.fields.title, readers.fields.pageCount};
 
 pub fn main() -> void {
     val doc = try decode("{\"title\": \"botopink\", \"pages\": [1, 2, 3]}") catch Json.Null;
-    terminal.print(readers.title(doc), readers.pageCount(doc));
+    terminal.print(title(doc), pageCount(doc));
 }

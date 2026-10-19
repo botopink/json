@@ -2,7 +2,6 @@
 
 import {io.terminal} from "std";
 import {Json, decode} from "json";
-mod report;
 import {report.summary};
 
 pub fn main() -> void {
