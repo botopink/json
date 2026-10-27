@@ -1,0 +1,5 @@
+//// json — the JSON value type and its codec (decision 396, `03-bundled-libs/142`): the `Json`
+//// type and its methods, `parse`, `decode`, `stringify`, `quote`. std knows nothing of JSON.
+////
+//// The package's entry (decision 1004 P3): the scaffold declares no module yet, so a program that
+//// loads `json` by name compiles it and finds no test; the modules land with 142's steps.

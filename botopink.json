@@ -4,5 +4,6 @@
   "otp": "28",
   "description": "The JSON value type and its codec: the Json type and its methods, parse, decode, stringify, quote; std knows nothing of JSON",
   "src": "src/",
-  "target": "erlang"
+  "target": "erlang",
+  "entry": "root.bp"
 }
